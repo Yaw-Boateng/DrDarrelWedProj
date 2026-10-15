@@ -449,6 +449,10 @@ a.monogram:hover { transform: scale(1.08); }
 
 .hero-photo-stack .hero-photo-layer.is-visible { opacity: 1; }
 
+/* Decorative name caption burned onto the mobile hero photo — hidden
+   on desktop, where the names already live in .hero-content. */
+.hero-photo-caption { display: none; }
+
 .hero-content {
   background: var(--cream);
   background-image:
@@ -647,6 +651,30 @@ a.monogram:hover { transform: scale(1.08); }
 
 .card + .card { margin-top: 24px; }
 
+.card-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: stretch;
+  gap: 24px;
+  max-width: 1120px;
+  margin: 0 auto 60px;
+  padding: 0 32px;
+}
+
+.card-row .card {
+  display: flex;
+  flex-direction: column;
+  max-width: none;
+  margin: 0;
+  padding: 38px 28px;
+}
+
+.card-row .card + .card { margin-top: 0; }
+
+@media (max-width: 900px) {
+  .card-row { grid-template-columns: 1fr; max-width: 720px; }
+}
+
 .card-section {
   text-align: center;
   padding: 20px 0;
@@ -674,6 +702,103 @@ a.monogram:hover { transform: scale(1.08); }
   font-size: 0.92rem;
   border-radius: var(--radius-sm);
   color: var(--ink-soft);
+}
+
+/* ---- RSVP (details.html) ---- */
+
+.rsvp-facts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.rsvp-fact {
+  text-align: left;
+  background: var(--cream-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+}
+
+.rsvp-fact-label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--crimson);
+  margin-bottom: 4px;
+}
+
+.rsvp-fact-value {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  color: var(--ink);
+  line-height: 1.35;
+}
+
+.rsvp-contacts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.rsvp-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 22px 16px;
+  background: var(--ivory);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+
+.rsvp-contact:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-strong);
+  border-color: var(--crimson-line);
+}
+
+.rsvp-contact-name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.rsvp-contact-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--white);
+  background: var(--crimson);
+  padding: 7px 14px;
+  border-radius: 999px;
+  transition: background .25s ease;
+}
+
+.rsvp-contact-phone::before {
+  content: '\260E';
+  font-size: 0.78rem;
+}
+
+.rsvp-contact:hover .rsvp-contact-phone { background: var(--crimson-dark); }
+
+@media (max-width: 420px) {
+  .rsvp-facts { grid-template-columns: 1fr; }
 }
 
 /* ---- Wedding color palette swatches (Style Guide) ---- */
@@ -710,18 +835,9 @@ a.monogram:hover { transform: scale(1.08); }
   line-height: 1.4;
 }
 
-/* grid layouts for party / menu / program */
+/* grid layouts for party / program */
 
-.grid {
-  display: grid;
-  gap: 28px;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  max-width: var(--max-width);
-  margin: 0 auto 60px;
-  padding: 0 32px;
-}
-
-.person-card, .menu-card {
+.person-card {
   text-align: center;
   background: var(--ivory);
   border: 1px solid var(--line);
@@ -731,7 +847,7 @@ a.monogram:hover { transform: scale(1.08); }
   transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
 }
 
-.person-card:hover, .menu-card:hover {
+.person-card:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-strong);
   border-color: var(--crimson-line);
@@ -748,20 +864,78 @@ a.monogram:hover { transform: scale(1.08); }
   background: linear-gradient(135deg, var(--crimson), var(--rose));
 }
 
-.menu-card h3 {
-  color: var(--crimson);
-  position: relative;
-  padding-bottom: 12px;
-  margin-bottom: 12px;
+/* ---- Wedding party squad cards (party.html) ---- */
+
+.squad-section {
+  max-width: 880px;
+  margin: 0 auto 56px;
+  padding: 0 24px;
 }
-.menu-card h3::after {
-  content: '';
-  position: absolute;
-  left: 50%; bottom: 0;
-  width: 28px; height: 2px;
-  background: var(--olive);
-  transform: translateX(-50%);
-  border-radius: 2px;
+
+.squad-label {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.squad-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+@media (min-width: 560px) {
+  .squad-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+}
+
+@media (min-width: 860px) {
+  .squad-grid { grid-template-columns: repeat(4, 1fr); gap: 28px; }
+}
+
+.squad-grid .person-card {
+  text-align: left;
+  padding: 0;
+  overflow: hidden;
+}
+
+.person-photo-frame {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--cream-soft);
+  border-bottom: 1px solid var(--line);
+}
+
+.person-photo-frame .person-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  padding: 0;
+  background: none;
+  margin: 0;
+  object-fit: cover;
+  transition: transform .5s ease;
+}
+
+.person-card:hover .person-photo-frame .person-photo { transform: scale(1.05); }
+
+.person-card-body {
+  padding: 14px 16px 20px;
+  text-align: center;
+}
+
+.person-name {
+  font-size: clamp(0.95rem, 2vw, 1.08rem);
+  letter-spacing: 0.02em;
+  margin-bottom: 6px;
+}
+
+.person-role {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--crimson);
 }
 
 .timeline {
@@ -1049,12 +1223,63 @@ a.monogram:hover { transform: scale(1.08); }
     z-index: 0;
   }
 
+  /* Modern bottom-scrim caption, burned onto the mobile hero photo —
+     brand ink fading up from a deep crimson base so the names read
+     clearly over any photo while staying on the site's own palette. */
+  .hero-photo-caption {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    padding: 120px 28px 60px;
+    text-align: center;
+    background:
+      linear-gradient(180deg,
+        rgba(42, 26, 28, 0) 0%,
+        rgba(42, 26, 28, 0.22) 40%,
+        rgba(42, 26, 28, 0.66) 72%,
+        rgba(108, 2, 22, 0.88) 100%);
+  }
+
+  .hero-photo-caption-rule {
+    width: 52px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--orange), transparent);
+  }
+
+  .hero-photo-caption-names {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
+    letter-spacing: 0.1em;
+    color: var(--white);
+    text-shadow: 0 2px 18px rgba(20, 10, 10, 0.4);
+  }
+
+  .hero-photo-caption-names .amp { color: var(--coral); }
+
+  .hero-photo-caption-tag {
+    font-family: var(--font-sans);
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+
   .scroll-cue {
     position: absolute;
     left: 50%;
     bottom: 22px;
     width: 22px;
     height: 22px;
+    z-index: 2;
     border-right: 2px solid rgba(255,255,255,.9);
     border-bottom: 2px solid rgba(255,255,255,.9);
     transform: translateX(-50%) rotate(45deg);
@@ -1090,7 +1315,7 @@ a.monogram:hover { transform: scale(1.08); }
     z-index: -1;
     border-radius: inherit;
     background: linear-gradient(var(--cream) 0%, rgba(247,238,225,0.93) 55%, var(--cream) 100%),
-                url('../img/hero-1.jpg') center 25% / cover;
+                url('../img/Pre Wed Shoot/Main Hero.jpeg') center 25% / cover;
   }
 }
 

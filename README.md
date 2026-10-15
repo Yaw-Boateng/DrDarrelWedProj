@@ -16,7 +16,6 @@ MaaAdwoaWed
 │  │  ├─ hero-1.jpg
 │  │  ├─ hero-2.jpg
 │  │  ├─ panel-details.jpg
-│  │  ├─ panel-menu.jpg
 │  │  ├─ panel-party.jpg
 │  │  ├─ panel-photos.jpg
 │  │  ├─ panel-program.jpg
@@ -33,7 +32,6 @@ MaaAdwoaWed
 │     └─ main.js
 ├─ details.html
 ├─ index.html
-├─ menu.html
 ├─ party.html
 ├─ photos.html
 ├─ program.html
