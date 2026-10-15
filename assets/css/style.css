@@ -592,10 +592,6 @@ a.monogram:hover { transform: scale(1.08); }
 .site-footer {
   text-align: center;
   padding: 28px 0 34px;
-  font-family: var(--font-script);
-  font-size: 1rem;
-  font-style: italic;
-  color: var(--ink-faint);
   position: relative;
 }
 .site-footer::before {
@@ -605,6 +601,14 @@ a.monogram:hover { transform: scale(1.08); }
   height: 1px;
   margin: 0 auto 18px;
   background: linear-gradient(90deg, transparent, var(--crimson-line), transparent);
+}
+
+.site-footer-badge {
+  display: block;
+  width: 150px;
+  height: auto;
+  margin: 0 auto;
+  opacity: 0.92;
 }
 
 /* ---- Interior pages ---- */
@@ -651,30 +655,6 @@ a.monogram:hover { transform: scale(1.08); }
 
 .card + .card { margin-top: 24px; }
 
-.card-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: stretch;
-  gap: 24px;
-  max-width: 1120px;
-  margin: 0 auto 60px;
-  padding: 0 32px;
-}
-
-.card-row .card {
-  display: flex;
-  flex-direction: column;
-  max-width: none;
-  margin: 0;
-  padding: 38px 28px;
-}
-
-.card-row .card + .card { margin-top: 0; }
-
-@media (max-width: 900px) {
-  .card-row { grid-template-columns: 1fr; max-width: 720px; }
-}
-
 .card-section {
   text-align: center;
   padding: 20px 0;
@@ -704,49 +684,72 @@ a.monogram:hover { transform: scale(1.08); }
   color: var(--ink-soft);
 }
 
-/* ---- RSVP (details.html) ---- */
+/* ---- Wedding Details page (details.html) ---- */
 
-.rsvp-facts {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-  max-width: 480px;
+.note-section { padding-bottom: 26px; }
+
+.note-quote {
+  position: relative;
+  max-width: 460px;
+  font-family: var(--font-script);
+  font-style: italic;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  padding: 0 8px;
+}
+
+/* Event facts — an icon-led info row that wraps gracefully instead of
+   cramming four values into fixed-width boxes on narrow screens. */
+.event-facts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 28px 44px;
+  max-width: 600px;
   margin: 0 auto;
 }
 
-.rsvp-fact {
-  text-align: left;
-  background: var(--cream-soft);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  padding: 12px 16px;
+.event-fact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 150px;
 }
 
-.rsvp-fact-label {
-  display: block;
+.event-fact-icon { font-size: 1.35rem; line-height: 1; }
+
+.event-fact-label {
   font-family: var(--font-sans);
   font-size: 0.64rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--crimson);
-  margin-bottom: 4px;
 }
 
-.rsvp-fact-value {
-  display: block;
+.event-fact-value {
   font-family: var(--font-serif);
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   color: var(--ink);
   line-height: 1.35;
 }
 
+.rsvp-contacts-label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin-bottom: 18px;
+}
+
 .rsvp-contacts {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-  max-width: 320px;
-  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
 }
 
 .rsvp-contact {
@@ -754,7 +757,8 @@ a.monogram:hover { transform: scale(1.08); }
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  padding: 22px 16px;
+  flex: 0 1 150px;
+  padding: 20px 14px;
   background: var(--ivory);
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
@@ -797,8 +801,55 @@ a.monogram:hover { transform: scale(1.08); }
 
 .rsvp-contact:hover .rsvp-contact-phone { background: var(--crimson-dark); }
 
-@media (max-width: 420px) {
-  .rsvp-facts { grid-template-columns: 1fr; }
+/* Gift panel — a distinct "keepsake" treatment (dashed border + warm
+   tint) so it reads as its own thing rather than another plain box. */
+.gift-panel {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 26px 28px;
+  border: 1.5px dashed var(--crimson-line);
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--coral-tint), var(--orange-tint));
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.gift-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  text-align: left;
+}
+
+.gift-field-label {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--crimson);
+  white-space: nowrap;
+}
+
+.gift-field-value {
+  font-family: var(--font-serif);
+  font-size: 0.98rem;
+  color: var(--ink);
+  text-align: right;
+}
+
+.gift-field-todo {
+  font-family: var(--font-sans);
+  font-style: italic;
+  font-size: 0.82rem;
+  color: var(--ink-faint);
+}
+
+@media (max-width: 480px) {
+  .gift-field { flex-direction: column; gap: 2px; text-align: center; }
+  .gift-field-value { text-align: center; }
 }
 
 /* ---- Wedding color palette swatches (Style Guide) ---- */
@@ -1020,14 +1071,62 @@ a.monogram:hover { transform: scale(1.08); }
   z-index: 2;
 }
 
-.photo-tile:nth-child(1) { grid-column: span 2; grid-row: span 2; }
-.photo-tile:nth-child(2) { grid-column: span 2; grid-row: span 1; }
-.photo-tile:nth-child(3) { grid-column: span 1; grid-row: span 1; }
-.photo-tile:nth-child(4) { grid-column: span 1; grid-row: span 1; }
-.photo-tile:nth-child(5) { grid-column: span 2; grid-row: span 1; }
-.photo-tile:nth-child(6) { grid-column: span 2; grid-row: span 1; }
+/* Spans apply to every grid child (photos and action tiles alike) so
+   the mosaic stays intact regardless of which cell holds what. */
+.photo-grid > *:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+.photo-grid > *:nth-child(2) { grid-column: span 2; grid-row: span 1; }
+.photo-grid > *:nth-child(3) { grid-column: span 1; grid-row: span 1; }
+.photo-grid > *:nth-child(4) { grid-column: span 1; grid-row: span 1; }
+.photo-grid > *:nth-child(5) { grid-column: span 2; grid-row: span 1; }
+.photo-grid > *:nth-child(6) { grid-column: span 2; grid-row: span 1; }
 
 .photo-tile { cursor: zoom-in; }
+
+/* Clickable CTA tiles woven into the photo mosaic in place of real
+   photos — same footprint and shadow language as .photo-tile, but a
+   solid brand-gradient surface carrying an icon + label instead. */
+.photo-action-tile {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  padding: 18px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  color: var(--white);
+  transition: transform .4s ease, box-shadow .4s ease;
+}
+
+.photo-action-tile:hover {
+  transform: scale(1.025);
+  box-shadow: var(--shadow-strong);
+  position: relative;
+  z-index: 2;
+}
+
+.photo-action-tile--gallery { background: linear-gradient(135deg, var(--crimson), var(--rose)); }
+.photo-action-tile--upload { background: linear-gradient(135deg, var(--olive), var(--olive-dark)); }
+
+.photo-action-tile-icon { font-size: 1.6rem; line-height: 1; }
+
+.photo-action-tile-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.08rem;
+  letter-spacing: 0.02em;
+}
+
+.photo-action-tile-sub {
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  opacity: 0.92;
+}
 
 /* ---- Photo lightbox (album preview) ---- */
 
@@ -1128,67 +1227,6 @@ a.monogram:hover { transform: scale(1.08); }
   .lightbox-nav { width: 42px; height: 42px; }
 }
 
-/* ---- Buttons ---- */
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-family: var(--font-sans);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  padding: 14px 30px;
-  border-radius: 999px;
-  border: 1px solid transparent;
-  cursor: pointer;
-  transition: transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
-}
-
-.btn-primary {
-  background: var(--crimson);
-  color: var(--ivory);
-  box-shadow: var(--shadow-soft);
-}
-.btn-primary:hover {
-  background: var(--crimson-dark);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-strong);
-}
-
-.btn-secondary {
-  background: transparent;
-  color: var(--crimson);
-  border-color: var(--crimson-line);
-}
-.btn-secondary:hover {
-  background: var(--coral-tint);
-  border-color: var(--rose);
-}
-
-/* ---- Guest photo sharing (Photos page) ---- */
-
-.share-photos {
-  max-width: 600px;
-  margin: 0 auto 60px;
-  padding: 48px 40px;
-  text-align: center;
-  background: var(--ivory);
-  background-image: radial-gradient(ellipse 320px 240px at 88% 112%, var(--coral-tint), transparent 60%);
-  border: 1px solid var(--crimson-line);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-soft);
-}
-
-.share-photos h2 { margin-bottom: 14px; }
-
-.share-photos p {
-  max-width: 420px;
-  margin: 0 auto 28px;
-}
-
 /* ---- Scroll reveal ---- */
 
 .reveal {
@@ -1206,12 +1244,15 @@ a.monogram:hover { transform: scale(1.08); }
   .hero-names { font-size: 2rem; }
 
   .photo-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
-  .photo-tile:nth-child(1) { grid-column: span 2; grid-row: span 2; }
-  .photo-tile:nth-child(2) { grid-column: span 1; grid-row: span 1; }
-  .photo-tile:nth-child(3) { grid-column: span 1; grid-row: span 1; }
-  .photo-tile:nth-child(4) { grid-column: span 2; grid-row: span 1; }
-  .photo-tile:nth-child(5) { grid-column: span 1; grid-row: span 1; }
-  .photo-tile:nth-child(6) { grid-column: span 1; grid-row: span 1; }
+  .photo-grid > *:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+  .photo-grid > *:nth-child(2) { grid-column: span 1; grid-row: span 1; }
+  .photo-grid > *:nth-child(3) { grid-column: span 1; grid-row: span 1; }
+  .photo-grid > *:nth-child(4) { grid-column: span 2; grid-row: span 1; }
+  /* The two action tiles get the full row width each on narrow
+     screens so their icon/title/subtitle stay comfortably legible. */
+  .photo-grid > *:nth-child(5),
+  .photo-grid > *:nth-child(6) { grid-column: span 2; grid-row: span 1; }
+  .photo-action-tile { padding: 24px; }
 
   .hero-photo-main {
     position: sticky;
@@ -1329,7 +1370,9 @@ a.monogram:hover { transform: scale(1.08); }
   .card { padding: 32px 22px; }
   .palette-swatches { grid-template-columns: repeat(3, 1fr); gap: 18px 14px; max-width: 320px; }
   .photo-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 130px; gap: 8px; padding: 0 16px; }
+  .photo-action-tile { padding: 14px; gap: 4px; }
+  .photo-action-tile-title { font-size: 0.92rem; }
+  .photo-action-tile-sub { font-size: 0.66rem; }
   .timeline-item { gap: 14px; }
   .timeline-time { flex: 0 0 72px; font-size: 0.72rem; }
-  .btn { padding: 13px 24px; font-size: 0.72rem; }
 }
