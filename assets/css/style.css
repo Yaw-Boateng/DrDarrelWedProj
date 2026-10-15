@@ -589,6 +589,11 @@ a.monogram:hover { transform: scale(1.08); }
   transition: background .25s ease, transform .25s ease;
 }
 
+.hero-location-row:hover .tag-arrow {
+  background: var(--crimson-dark);
+  transform: translateX(3px);
+}
+
 .site-footer {
   text-align: center;
   padding: 28px 0 34px;
@@ -734,6 +739,18 @@ a.monogram:hover { transform: scale(1.08); }
   font-size: 0.98rem;
   color: var(--ink);
   line-height: 1.35;
+}
+
+.event-fact-link {
+  text-decoration: underline;
+  text-decoration-color: var(--crimson-line);
+  text-underline-offset: 3px;
+  transition: color .2s ease, text-decoration-color .2s ease;
+}
+
+.event-fact-link:hover {
+  color: var(--crimson);
+  text-decoration-color: var(--crimson);
 }
 
 .rsvp-contacts-label {

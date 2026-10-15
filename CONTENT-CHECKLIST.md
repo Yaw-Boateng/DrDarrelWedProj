@@ -39,9 +39,10 @@ Items are grouped by page, in the order they appear on the site.
 
 ## 1. Homepage (`index.html`)
 
-- [ ] **Traditional Ceremony** — venue name, address, and a real maps
-      link for the "Directions →" tag (currently decorative, not clickable).
-- [ ] **Reception** — same: venue name, address, and maps link.
+- [x] **Wedding Location directions.** The "Directions →" tag now links
+      to the Google Maps pin you sent (Gospel Ambassadors Church,
+      Haatso Ecomog) — also added to the Venue field on the Details
+      page. Confirm this pin is right if the venue ever changes.
 - [ ] Hero photos (`hero-1.jpg`, `hero-2.jpg`) — real couple photos to
       replace the stock placeholders.
 - [ ] Hover-preview photos (`panel-details.jpg`, `panel-style.jpg`,
