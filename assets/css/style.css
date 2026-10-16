@@ -449,6 +449,31 @@ a.monogram:hover { transform: scale(1.08); }
 
 .hero-photo-stack .hero-photo-layer.is-visible { opacity: 1; }
 
+.hero-photo-stack .hero-photo-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: auto;
+  width: 100%;
+  height: min(100vh, 100%);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 8px;
+  padding: 20px;
+  box-sizing: border-box;
+  background: var(--cream);
+}
+
+.hero-photo-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 4px;
+}
+
 /* Decorative name caption burned onto the mobile hero photo — hidden
    on desktop, where the names already live in .hero-content. */
 .hero-photo-caption { display: none; }
