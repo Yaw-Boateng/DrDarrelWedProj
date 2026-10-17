@@ -857,6 +857,8 @@ a.monogram:hover { transform: scale(1.08); }
   gap: 16px;
 }
 
+.gift-panel + .gift-panel { margin-top: 20px; }
+
 .gift-field {
   display: flex;
   justify-content: space-between;
@@ -1154,6 +1156,13 @@ a.monogram:hover { transform: scale(1.08); }
 .photo-action-tile--gallery { background: linear-gradient(135deg, var(--crimson), var(--rose)); }
 .photo-action-tile--upload { background: linear-gradient(135deg, var(--olive), var(--olive-dark)); }
 
+.photo-action-tile--disabled {
+  background: linear-gradient(135deg, var(--ink-faint), var(--ink-soft));
+  cursor: default;
+  opacity: 0.72;
+}
+.photo-action-tile--disabled:hover { transform: none; box-shadow: var(--shadow-soft); }
+
 .photo-action-tile-icon { font-size: 1.6rem; line-height: 1; }
 
 .photo-action-tile-title {
@@ -1268,6 +1277,79 @@ a.monogram:hover { transform: scale(1.08); }
   .lightbox-prev { left: 8px; }
   .lightbox-next { right: 8px; }
   .lightbox-nav { width: 42px; height: 42px; }
+}
+
+/* ---- Our Story page (our-story.html) ---- */
+
+.story-card {
+  max-width: 700px;
+  margin: 0 auto 60px;
+  background: var(--ivory);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  padding: 52px 44px;
+}
+
+.story-lead {
+  font-family: var(--font-script);
+  font-style: italic;
+  font-size: 1.4rem;
+  line-height: 1.55;
+  color: var(--crimson);
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto 34px;
+}
+
+.story-body p {
+  margin: 0 0 22px;
+  text-align: left;
+  color: var(--ink-soft);
+}
+
+.story-body p:last-child { margin-bottom: 0; }
+
+.story-body strong { color: var(--ink); font-weight: 600; }
+
+.story-signoff {
+  text-align: center;
+  margin-top: 38px;
+  padding-top: 30px;
+  border-top: 1px solid var(--line);
+}
+
+.story-hashtags {
+  display: block;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--crimson);
+  font-size: 0.95rem;
+  margin-bottom: 14px;
+}
+
+.story-emoji {
+  font-size: 1.5rem;
+  letter-spacing: 0.3em;
+}
+
+.story-photo {
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: top;
+  margin: 8px auto 28px;
+  display: block;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+}
+
+@media (max-width: 600px) {
+  .story-card { padding: 34px 22px; }
+  .story-lead { font-size: 1.2rem; }
+  .story-photo { max-width: 280px; }
 }
 
 /* ---- Scroll reveal ---- */
