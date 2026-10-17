@@ -705,11 +705,15 @@ a.monogram:hover { transform: scale(1.08); }
 .venue-photo {
   width: 100%;
   max-width: 320px;
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
+  height: auto;
   margin: 0 auto 18px;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-soft);
+  transition: transform .5s cubic-bezier(.22,1,.36,1), box-shadow .4s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .venue-photo:hover { transform: scale(1.03); box-shadow: var(--shadow-strong); }
 }
 
 .note-box {
@@ -1337,20 +1341,48 @@ a.monogram:hover { transform: scale(1.08); }
 }
 
 .story-emoji {
+  display: inline-block;
   font-size: 1.5rem;
   letter-spacing: 0.3em;
+  animation: story-emoji-float 3.2s ease-in-out infinite;
 }
 
+@keyframes story-emoji-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(-3deg); }
+}
+
+/* Full, uncropped photo — height follows the image's own proportions
+   instead of forcing it into a box shape that chops off faces/bodies. */
 .story-photo {
   width: 100%;
   max-width: 420px;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  object-position: top;
+  height: auto;
   margin: 8px auto 28px;
   display: block;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-soft);
+  transition: transform .5s cubic-bezier(.22,1,.36,1), box-shadow .4s ease;
+}
+
+/* Reveal-in: a touch more flourish than the plain fade used elsewhere —
+   a soft pop-and-settle with a gentle tilt, same IntersectionObserver
+   trigger as .reveal so it plays identically on mobile and desktop. */
+.story-photo.reveal {
+  opacity: 0;
+  transform: scale(.9) rotate(-2deg);
+  transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1), box-shadow .4s ease;
+}
+.story-photo.reveal:nth-of-type(even) { transform: scale(.9) rotate(2deg); }
+.story-photo.reveal.is-visible { opacity: 1; transform: none; }
+
+/* Hover lift — desktop/trackpad only, so it never gets "stuck" active
+   on a tap the way :hover can on touchscreens. */
+@media (hover: hover) and (pointer: fine) {
+  .story-photo:hover {
+    transform: scale(1.03) rotate(-0.5deg);
+    box-shadow: var(--shadow-strong);
+  }
 }
 
 @media (max-width: 600px) {
